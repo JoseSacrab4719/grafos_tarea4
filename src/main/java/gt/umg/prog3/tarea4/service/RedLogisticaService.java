@@ -4,7 +4,7 @@ import gt.umg.prog3.tarea4.dto.DTOs;
 import gt.umg.prog3.tarea4.exception.CiudadNoEncontradaException;
 import gt.umg.prog3.tarea4.model.CentroDistribucion;
 import gt.umg.prog3.tarea4.model.GrafoRed;
-import gt.umg.prog3.tarea4.model.arista;
+import gt.umg.prog3.tarea4.model.Aristas;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -46,7 +46,7 @@ public class RedLogisticaService {
             String u = e.getValue();
             if (procesados.contains(u)) continue;
             procesados.add(u);
-            for (arista a : redRutas.obtenerVecinos(u)) {
+            for (Aristas a : redRutas.obtenerVecinos(u)) {
                 String v = a.getDestino();
                 if (dist.get(u) != Integer.MAX_VALUE && dist.get(u) + a.getPeso() < dist.get(v)) {
                     dist.put(v, dist.get(u) + a.getPeso());
@@ -73,7 +73,7 @@ public class RedLogisticaService {
         while (!cola.isEmpty()) {
             String actual = cola.poll();
             visitados.add(actual);
-            for (arista a : redRutas.obtenerVecinos(actual)) {
+            for (Aristas a : redRutas.obtenerVecinos(actual)) {
                 if (!vistos.contains(a.getDestino())) {
                     vistos.add(a.getDestino());
                     cola.offer(a.getDestino());
@@ -114,7 +114,7 @@ public class RedLogisticaService {
 
     private void dfsConexo(String vertice, Set<String> visitados) {
         visitados.add(vertice);
-        for (arista a : redRutas.obtenerVecinos(vertice)) {
+        for (Aristas a : redRutas.obtenerVecinos(vertice)) {
             if (!visitados.contains(a.getDestino())) dfsConexo(a.getDestino(), visitados);
         }
     }

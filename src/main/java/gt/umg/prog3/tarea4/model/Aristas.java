@@ -8,15 +8,15 @@ package gt.umg.prog3.tarea4.model;
  *
  * @author José Sacrab
  */
-public class arista implements Comparable<arista> {
+public class Aristas implements Comparable<Aristas> {
 
     private String origen;
     private String destino;
     private int peso;
 
-    public arista() {}
+    public Aristas() {}
 
-    public arista(String origen, String destino, int peso) {
+    public Aristas(String origen, String destino, int peso) {
         this.origen = origen;
         this.destino = destino;
         this.peso = peso;
@@ -32,7 +32,7 @@ public class arista implements Comparable<arista> {
     public void setPeso(int peso) { this.peso = peso; }
 
     @Override
-    public int compareTo(arista otra) {
+    public int compareTo(Aristas otra) {
         return Integer.compare(this.peso, otra.peso);
     }
 }
